@@ -6,14 +6,16 @@ public class Bomb : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Untagged")) return;
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Update score
+            GameManager.Instance.IncreaseScore();
         }
 
         if (collision.gameObject.CompareTag("Ground"))
         {
-            //End game
+            GameManager.Instance.EndGame();
         }
 
         Destroy(gameObject);
